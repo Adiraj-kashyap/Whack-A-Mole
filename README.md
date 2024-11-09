@@ -1,3 +1,3 @@
 # Whack-a-Mole Game
 
-[Click here to open the Whack-a-Mole game on Scribble Pad](https://app.scribbler.live/#url=https://github.com/Adiraj-kashyap/Whack-A-Mole/blob/main/index.html)
+[Click here to open the Whack-a-Mole game on Scribble Pad](https://app.scribbler.live/?jsnb=local:3&hide-menu=true&hide-code=true/#url=https://github.com/Adiraj-kashyap/Whack-A-Mole/blob/main/index.html)
