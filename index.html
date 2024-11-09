@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Start Game</title>
+  <link rel="stylesheet" href="start-style.css">
+</head>
+<body>
+  <h1>Whack-a-Mole</h1>
+  <h3>Select Game Duration</h3>
+  <form id="game-settings" action="game.html" method="GET">
+    <label>
+      <input type="radio" name="time-limit" value="10" required> 10 seconds
+    </label><br>
+    <label>
+      <input type="radio" name="time-limit" value="30"> 30 seconds
+    </label><br>
+    <label>
+      <input type="radio" name="time-limit" value="60"> 1 minute
+    </label><br>
+    <label>
+      <input type="radio" name="time-limit" value="300"> 5 minutes
+    </label><br>
+    <button type="submit">Start Game</button>
+  </form>
+</body>
+</html>
