@@ -1,0 +1,20 @@
+{
+  "metadata": {
+    "name": "New JSNB",
+    "language_info": {
+      "name": "JavaScipt",
+      "version": "8.0"
+    }
+  },
+  "jsnbversion": "v0.1",
+  "cells": [
+    {
+      "code": "\n\n\nfunction createStartPage() {\n    document.body.innerHTML = `\n        <h1>Whack-a-Mole</h1>\n        <h3>Select Game Duration</h3>\n        <form id=\"game-settings\">\n            <label><input type=\"radio\" name=\"time-limit\" value=\"10\" required> 10 seconds</label><br>\n            <label><input type=\"radio\" name=\"time-limit\" value=\"30\"> 30 seconds</label><br>\n            <label><input type=\"radio\" name=\"time-limit\" value=\"60\"> 1 minute</label><br>\n            <label><input type=\"radio\" name=\"time-limit\" value=\"300\"> 5 minutes</label><br>\n            <button type=\"button\" id=\"start-game\">Start Game</button>\n        </form>\n    `;\n\n    document.getElementById(\"start-game\").onclick = startGame;\n}\n\n// Start the game with the selected duration\nfunction startGame() {\n    const selectedTime = document.querySelector('input[name=\"time-limit\"]:checked');\n    if (!selectedTime) {\n        alert(\"Please select a game duration!\");\n        return;\n    }\n\n    const gameDuration = parseInt(selectedTime.value) * 1000;\n    createGamePage(gameDuration);\n}\n\n// Set up the game page\nfunction createGamePage(gameDuration) {\n    document.body.innerHTML = `\n        <div id=\"game-board\"></div>\n        <h3>Score: <span id=\"score\">0</span></h3>\n        <button id=\"start-btn\">Start Game</button>\n    `;\n\n    // Set up CSS styling\n    document.body.style.cssText = 'font-family: Arial, sans-serif; display: flex; flex-direction: column; align-items: center; margin-top: 50px;';\n    const gameBoard = document.getElementById('game-board');\n    gameBoard.style.cssText = 'display: grid; grid-template-columns: repeat(3, 100px); grid-gap: 10px;';\n\n    for (let i = 1; i <= 9; i++) {\n        const hole = document.createElement('div');\n        hole.classList.add('hole');\n        hole.style.cssText = 'width: 100px; height: 100px; background-color: #c3c3c3; border: 2px solid #999; position: relative; cursor: pointer;';\n        hole.dataset.hole = i;\n        gameBoard.appendChild(hole);\n    }\n\n    document.getElementById('start-btn').onclick = () => {\n        if (!gameActive) {\n            startWhackAMole(gameDuration);\n        }\n    };\n}\n\nlet score = 0;\nlet moleTimer;\nlet gameActive = false;\n\nfunction showMole() {\n    const holes = document.querySelectorAll('.hole');\n    holes.forEach(hole => hole.classList.remove('mole'));\n    \n    const randomHole = holes[Math.floor(Math.random() * holes.length)];\n    randomHole.classList.add('mole');\n    randomHole.style.backgroundColor = '#6c6';\n\n    randomHole.onclick = () => {\n        if (gameActive && randomHole.classList.contains('mole')) {\n            score++;\n            document.getElementById('score').textContent = score;\n            randomHole.classList.remove('mole');\n            randomHole.style.backgroundColor = '#c3c3c3';\n        }\n    };\n}\n\nfunction startWhackAMole(gameDuration) {\n    score = 0;\n    document.getElementById('score').textContent = score;\n    gameActive = true;\n    \n    moleTimer = setInterval(showMole, 800);\n    setTimeout(endGame, gameDuration);\n}\n\nfunction endGame() {\n    clearInterval(moleTimer);\n    gameActive = false;\n    alert(`Game Over! Your final score is: ${score}`);\n}\n\n// Initialize the start page when the script loads\ncreateStartPage();\n",
+      "status": "",
+      "output": "",
+      "type": "code"
+    }
+  ],
+  "source": "https://github.com/gopi-suvanam/jsnb",
+  "run_on_load": false
+}
